@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Data
 @Entity
 @Table(name = "cms_book")
@@ -20,10 +21,10 @@ public class Book {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "generator_uuid")
-    @GenericGenerator(name = "generator_uuid",strategy = "uuid")
+    @GenericGenerator(name = "generator_uuid", strategy = "uuid")
     @ApiModelProperty(value = "书籍主键,采用hibernate的uuid生成32位字符串")
     private String id;
-//
+    //
     @Column(name = "title")
     @ApiModelProperty(value = "书名")
     private String title;
@@ -36,44 +37,54 @@ public class Book {
     @ApiModelProperty(value = "一级分类")
     private String firstSort;
 
-    @Column(name = "secondary")
+    @Column(name = "second_sort")
     @ApiModelProperty(value = "二级分类")
-    private String secondary;
+    private String secondSort;
 
     @Column(name = "is_serial")
     @ApiModelProperty(value = "连载")
-    private int serial;
+    private int isSerial;
 
-    @Column(name = "work_number")
+    @Column(name = "word_number")
     @ApiModelProperty(value = "字数")
-    private int workNumber;
-//
+    private int wordNumber;
+    //
     @Column(name = "is_state")
-    @ApiModelProperty(value = "是否上线")
-    private int state;
+    @ApiModelProperty(value = "状态")
+    private int isState;
 
-    @Column(name = "is_full_cost")
+    @Column(name = "is_fullcost")
     @ApiModelProperty(value = "是否收费")
-    private int fullCost;
+    private int isFullcost;
 
 
-    @Column(name = "gmt_create",nullable = false,updatable = false)
-    @CreatedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @ApiModelProperty(value = "授权开始时间",example = "2020-02-02 9:00:00")
-    private Date gmtCreate;
-
-    @Column(name = "gmt_modified",nullable = false,insertable = false)
-    @LastModifiedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @ApiModelProperty(value = "授权结束时间", example = "2020-12-12 9:00:00")
-    private Date gmtModified;
+    @Column(name = "start_time")
+    @ApiModelProperty(value = "授权开始时间")
+    private Date startTime;
+    @Column(name = "end_time")
+    @ApiModelProperty(value = "授权结束时间")
+    private Date endTime;
 
     @Column(name = "is_original")
     @ApiModelProperty(value = "是否原创")
-    private int original;
+    private int isOriginal;
 
-    @Column(name = "is_grant_state")
-    @ApiModelProperty(value = "授权状态")
-    private int grantState;
+    @Column(name = "copyright_id")
+    @ApiModelProperty(value = "外键")
+    private int copyrightId;
+    @Column(name = "info")
+    @ApiModelProperty(value = "简介")
+    private String info;
+    @Column(name = "image_url")
+    @ApiModelProperty(value = "书封地址")
+    private String imageUrl;
+
+    @Column(name = "gmt_create",nullable = false,updatable = false)
+    @ApiModelProperty(value = "创建时间",example = "2020-09-01 20:00:00")
+
+    private Date gmtCreate;
+    @Column(name="gmt_modified",insertable = false,nullable = false)
+    @ApiModelProperty(value = "修改时间",example = "2020-09-01 20:00:00")
+
+    private Date gmtModified;
 }

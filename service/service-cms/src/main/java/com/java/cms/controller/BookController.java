@@ -79,7 +79,7 @@ public class BookController {
         // ## 根据id查询书籍数据
         Book book = bookService.getById(bookId);
 //        book.setId(bookId);
-        book.setState(state);
+        book.setIsState(state);
         // ## 修改数据
         bookService.saveOrUpdate(book);
         return APICODE.OK();
